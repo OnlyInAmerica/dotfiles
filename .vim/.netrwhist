@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/Users/dbrodsky/.vim/pack/plugins'
+let g:netrw_dirhist_0='/Users/dbrodsky/.vim'
+let g:netrw_dirhist_9='/Users/dbrodsky/.vim/ftplugin'
+let g:netrw_dirhist_8='/Users/dbrodsky/.vim'
+let g:netrw_dirhist_7='/Users/dbrodsky/.vim/pack/plugins/start'
+let g:netrw_dirhist_6='/Users/dbrodsky/.vim'
+let g:netrw_dirhist_5='/Users/dbrodsky/.vim/pack'
+let g:netrw_dirhist_4='/Users/dbrodsky/.vim'
+let g:netrw_dirhist_3='/Users/dbrodsky/.vim/pack/plugins/opt'
+let g:netrw_dirhist_2='/Users/dbrodsky/.vim/ftplugin'
