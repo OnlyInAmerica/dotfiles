@@ -19,3 +19,6 @@
 [submodule ".vim/pack/plugins/start/vim-rhubarb"]
 	path = .vim/pack/plugins/start/vim-rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
+[submodule ".vim/pack/plugins/start/vimwiki"]
+	path = .vim/pack/plugins/start/vimwiki
+	url = https://github.com/vimwiki/vimwiki.git
