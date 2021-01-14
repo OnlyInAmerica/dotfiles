@@ -1,4 +1,5 @@
 "Basics
+set noswapfile
 set autoread
 set backspace=indent,eol,start
 set clipboard=unnamed
