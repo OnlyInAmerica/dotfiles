@@ -1,0 +1,72 @@
+Neovim C++ Navigation Guide
+===========================
+
+This repo now configures Neovim to use clangd for C and C++ source navigation.
+
+Requirements
+------------
+- `nvim`
+- `clangd`
+- A C++ project with `compile_commands.json`, `compile_flags.txt`, `.clangd`, or a `.git` root
+
+Core C++ navigation
+-------------------
+- `gd`
+  Jump to the definition of the symbol under the cursor.
+
+- `gD`
+  Jump to the declaration of the symbol under the cursor.
+
+- `gr`
+  Find references/usages of the symbol under the cursor.
+
+- `gI`
+  Jump to implementations or overrides of the symbol under the cursor.
+
+- `gy`
+  Jump to the definition of the type under the cursor.
+
+- `K`
+  Show hover information for the symbol under the cursor.
+
+- `<C-o>`
+  Jump back to the previous location after using `gd` or other jumps.
+
+Helpful general navigation
+--------------------------
+- `f`
+  Show the surrounding C-style function signature or name.
+
+- `<C-p>`
+  Open `FZF` for fuzzy file search.
+
+- `<C-e>`
+  Open the netrw file explorer (`:Lex`).
+
+- `H`
+  Go to the previous tab.
+
+- `L`
+  Go to the next tab.
+
+- `T`
+  Open a new tab.
+
+Notes about diagnostics in the gutter
+-------------------------------------
+You may see letters such as `E` and `W` in the sign column near the line numbers:
+
+- `E` means Error
+- `W` means Warning
+
+These come from Neovim diagnostics, usually produced by `clangd` for the current file.
+
+Depending on the diagnostic source, you may also eventually see:
+
+- `H` for Hint
+- `I` for Info
+
+Tips
+----
+- `gd` and `gr` work best when `clangd` can find compilation settings for the project.
+- If navigation seems inaccurate, make sure your project has a valid `compile_commands.json`.

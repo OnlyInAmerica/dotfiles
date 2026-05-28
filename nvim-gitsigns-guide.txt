@@ -1,0 +1,37 @@
+Neovim gitsigns Guide
+=====================
+
+This repo uses `gitsigns.nvim` for Git status markers in the gutter.
+
+What the gutter signs mean
+--------------------------
+- `+` added line
+- `~` changed line
+- `_` deleted line
+- `^` deletion above the current line
+
+Keyboard shortcuts
+------------------
+- `]h`
+  Jump to the next Git hunk.
+
+- `[h`
+  Jump to the previous Git hunk.
+
+- `\hs`
+  Stage the current hunk.
+
+- `\hr`
+  Reset the current hunk.
+
+- `\hp`
+  Preview the current hunk.
+
+- `\hb`
+  Show Git blame for the current line.
+
+Notes
+-----
+- `\` is the current `<leader>` key in this config.
+- A "hunk" is one contiguous block of added/changed/removed lines.
+- `gitsigns.nvim` only shows signs when the file is inside a Git repository.
