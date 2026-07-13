@@ -76,7 +76,7 @@ local function find_project_root(bufnr)
   return vim.uv.cwd()
 end
 
-local function set_cpp_lsp_keymaps(bufnr)
+local function set_lsp_keymaps(bufnr)
   local opts = { buffer = bufnr, silent = true }
 
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
@@ -105,13 +105,6 @@ if bootstrap_lazy() then
         {
           "fatih/vim-go",
           ft = "go",
-        },
-        {
-          "davidhalter/jedi-vim",
-          ft = "python",
-          init = function()
-            vim.keymap.set("n", "<C-]>", "<leader>d", { silent = true })
-          end,
         },
         {
           "lewis6991/gitsigns.nvim",
@@ -169,6 +162,36 @@ end
 
 vim.cmd("map f <Cmd>lua ShowFuncName()<CR>")
 
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("dotfiles_lsp_attach", { clear = true }),
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    set_lsp_keymaps(args.buf)
+    if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_completion) then
+      vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
+    end
+  end,
+})
+
+vim.lsp.config("pyright", {
+  cmd = { "pyright-langserver", "--stdio" },
+  filetypes = { "python" },
+  root_markers = {
+    "pyproject.toml",
+    "setup.py",
+    "setup.cfg",
+    "requirements.txt",
+    "Pipfile",
+    "pyrightconfig.json",
+    ".git",
+  },
+})
+
+if vim.fn.executable("pyright-langserver") == 1 then
+  vim.lsp.enable("pyright")
+end
+
 vim.api.nvim_create_autocmd("FileType", {
   group = vim.api.nvim_create_augroup("dotfiles_cpp_lsp", { clear = true }),
   pattern = { "c", "cpp", "objc", "objcpp" },
@@ -183,7 +206,7 @@ vim.api.nvim_create_autocmd("FileType", {
       root_dir = find_project_root(args.buf),
     }
 
-    set_cpp_lsp_keymaps(args.buf)
+    set_lsp_keymaps(args.buf)
     vim.api.nvim_buf_call(args.buf, function()
       vim.lsp.start(config)
     end)
